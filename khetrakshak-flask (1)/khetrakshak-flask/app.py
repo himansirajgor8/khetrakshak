@@ -14,6 +14,7 @@ Routes:
 import json
 import os
 import uuid
+import time
 from datetime import datetime
 
 import requests
@@ -155,19 +156,36 @@ def api_weather():
     lang = lang if lang in WEATHER_TEXT else "en"
     if not location:
         return jsonify({"error": "Please enter a location"}), 400
+    weather_headers = {"User-Agent": "KhetRakshak-Farmer-App/1.0"}
+
+    def get_weather_json(url, params):
+        """Retry once because free hosting can have brief outbound-network hiccups."""
+        last_error = None
+        for attempt in range(2):
+            try:
+                response = requests.get(url, params=params, headers=weather_headers, timeout=(5, 20))
+                response.raise_for_status()
+                return response.json()
+            except (requests.RequestException, ValueError) as exc:
+                last_error = exc
+                if attempt == 0:
+                    time.sleep(1)
+        raise last_error
+
     try:
-        geo = requests.get(
+        geo = get_weather_json(
             "https://geocoding-api.open-meteo.com/v1/search",
-            params={"name": location, "count": 1, "language": "en", "format": "json"}, timeout=10,
-        ).json()
+            {"name": location, "count": 1, "language": "en", "format": "json"},
+        )
         if not geo.get("results"):
             return jsonify({"error": "Location not found. Try village, town and state."}), 404
         place = geo["results"][0]
-        forecast = requests.get(
+        forecast = get_weather_json(
             "https://api.open-meteo.com/v1/forecast",
-            params={"latitude": place["latitude"], "longitude": place["longitude"], "daily": "weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max", "timezone": "auto", "forecast_days": 5}, timeout=10,
-        ).json()["daily"]
-    except (requests.RequestException, KeyError, ValueError):
+            {"latitude": place["latitude"], "longitude": place["longitude"], "daily": "weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max", "timezone": "auto", "forecast_days": 5},
+        )["daily"]
+    except (requests.RequestException, KeyError, ValueError) as exc:
+        app.logger.warning("Open-Meteo weather request failed for %r: %s", location, exc)
         return jsonify({"error": "Live weather is unavailable right now. Please try again shortly."}), 503
 
     summaries = {0: "Clear sky", 1: "Mostly clear", 2: "Partly cloudy", 3: "Overcast", 45: "Fog", 48: "Fog", 51: "Drizzle", 53: "Drizzle", 55: "Drizzle", 61: "Rain", 63: "Rain", 65: "Heavy rain", 80: "Rain showers", 81: "Rain showers", 82: "Heavy showers", 95: "Thunderstorm"}
