@@ -1,0 +1,89 @@
+[
+  {
+    "name": "PM-KISAN",
+    "category": "Income Support",
+    "desc": "₹6,000/year direct income support paid in 3 installments to eligible farmer families.",
+    "eligibility": [
+      "Small and marginal farmer families",
+      "Cultivable landholding as per state land records",
+      "Excludes institutional landholders and income-tax payers"
+    ],
+    "documents": ["Aadhaar card", "Land ownership papers / Khatauni", "Bank account linked with Aadhaar"],
+    "steps": [
+      "Visit pmkisan.gov.in and select 'New Farmer Registration'",
+      "Enter Aadhaar number and basic details",
+      "Fill land and bank details as per records",
+      "Submit and note your registration ID for tracking"
+    ]
+  },
+  {
+    "name": "PMFBY (Crop Insurance)",
+    "category": "Insurance",
+    "desc": "Pradhan Mantri Fasal Bima Yojana — low-premium insurance covering crop loss from natural calamities, pests, and disease.",
+    "eligibility": [
+      "All farmers growing notified crops in notified areas",
+      "Both loanee and non-loanee farmers eligible"
+    ],
+    "documents": ["Aadhaar card", "Land records", "Bank passbook", "Sowing certificate (if non-loanee)"],
+    "steps": [
+      "Apply through your bank, CSC center, or the PMFBY portal",
+      "Choose your crop and season (Kharif/Rabi)",
+      "Pay the farmer share of premium (as low as 1.5-2%)",
+      "Insurer settles claims based on yield/loss assessment"
+    ]
+  },
+  {
+    "name": "Kisan Credit Card (KCC)",
+    "category": "Credit",
+    "desc": "Short-term credit at low interest for crop, working capital, and allied agricultural needs.",
+    "eligibility": [
+      "Farmers, tenant farmers, sharecroppers, and self-help groups",
+      "Fisheries and animal husbandry farmers also eligible"
+    ],
+    "documents": ["Aadhaar and PAN card", "Land ownership/lease documents", "Passport-size photographs"],
+    "steps": [
+      "Visit nearest bank branch or apply online via bank portal",
+      "Fill KCC application with land and crop details",
+      "Bank assesses and sanctions credit limit",
+      "Receive KCC card/passbook for withdrawals"
+    ]
+  },
+  {
+    "name": "Soil Health Card Scheme",
+    "category": "Advisory",
+    "desc": "Free soil testing every 2 years with crop-wise nutrient and fertilizer recommendations.",
+    "eligibility": ["All landholding farmers across India"],
+    "documents": ["Land details", "Aadhaar card (for registration at some centers)"],
+    "steps": [
+      "Contact your local Krishi Vigyan Kendra or agriculture office",
+      "Submit a soil sample from your field",
+      "Receive Soil Health Card with recommendations within weeks"
+    ]
+  },
+  {
+    "name": "PM Krishi Sinchayee Yojana",
+    "category": "Irrigation",
+    "desc": "Subsidy support for drip and sprinkler irrigation systems to improve water-use efficiency.",
+    "eligibility": ["All categories of farmers, with higher subsidy for small/marginal and SC/ST farmers"],
+    "documents": ["Land records", "Aadhaar card", "Bank account details", "Quotation from approved irrigation equipment dealer"],
+    "steps": [
+      "Apply through state agriculture/horticulture department portal",
+      "Get field verification done",
+      "Purchase approved equipment from empanelled dealer",
+      "Subsidy credited after installation verification"
+    ]
+  },
+  {
+    "name": "e-NAM (National Agriculture Market)",
+    "category": "Market Access",
+    "desc": "Online trading platform connecting farmers to buyers across mandis for better price discovery.",
+    "eligibility": ["Farmers registered with a participating APMC mandi"],
+    "documents": ["Aadhaar card", "Bank account", "Mandi registration (if applicable)"],
+    "steps": [
+      "Register at your nearest e-NAM enabled mandi",
+      "Get produce quality-assayed on arrival",
+      "List produce for e-auction",
+      "Receive payment directly to bank account"
+    ]
+  }
+]

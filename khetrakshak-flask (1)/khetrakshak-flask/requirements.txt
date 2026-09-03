@@ -1,0 +1,7 @@
+Flask==3.0.3
+Pillow==10.4.0
+requests==2.32.3
+
+# --- Only needed if you enable REAL crop disease detection (see disease_model.py) ---
+# torch==2.3.1
+# torchvision==0.18.1
